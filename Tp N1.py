@@ -3,76 +3,50 @@ print('Trabajo Práctico 01: Gestión de Cabinas de Peaje.')
 patente = input('ingrese le numero de patente:')
 pais_del_vehiculo = None
 
-vehiculo = int(input("Ingrese el tipo de vehiculo (motocicleta, automovil o camion) desde 0-2, respectivamente: "))
-
 importe_urug_para_arg = 300
 importe_brasil = 400
 importe_bolivia = 200
 pago = None
 
-metodo_pago = int(input("Ingrese el metodo de pago, manual(1) o telepeaje (2): "))
-pago_con_descuento = None
-
-pais = int(input("Ingrese el pais de la cabina atravesada, Argentina(0), Bolivia(1), Brasil(2), Paraguay(3), "
-                 "Uruguay(4): "))
-
-distancia = float(input("Ingrese la distancia recorrida desde la ultima cabina: "))
 promedio = None
 
-if len(patente) == 7:
-    if (65 <= ord(patente[0]) <= 90) and (65 <= ord(patente[1]) <= 90) and (48 <= ord(patente[2]) <= 57) and (
-            48 <= ord(patente[3]) <= 57) and (48 <= ord(patente[4]) <= 57) and (65 <= ord(patente[5]) <= 90) and (
-            65 <= ord(patente[6]) <= 90) \
-            or (65 <= ord(patente[0]) <= 90) and (65 <= ord(patente[1]) <= 90) and (48 <= ord(patente[2]) <= 57) and (
-            48 <= ord(patente[3]) <= 57) and (48 <= ord(patente[4]) <= 57) and (48 <= ord(patente[5]) <= 57) and (
-            48 <= ord(patente[6]) <= 57) \
-            or (65 <= ord(patente[0]) <= 90) and (65 <= ord(patente[1]) <= 90) and (65 <= ord(patente[2]) <= 90) and (
-            48 <= ord(patente[3]) <= 57) and (48 <= ord(patente[5]) <= 57) and (48 <= ord(patente[6]) <= 57) and (
-            65 <= ord(patente[4]) <= 90) \
-            or (65 <= ord(patente[0]) <= 90) and (65 <= ord(patente[1]) <= 90) and (65 <= ord(patente[2]) <= 90) and (
-            65 <= ord(patente[3]) <= 90) and (48 <= ord(patente[4]) <= 57) and (48 <= ord(patente[5]) <= 57) and (
-            48 <= ord(patente[6]) <= 57) \
-            or (65 <= ord(patente[0]) <= 90) and (65 <= ord(patente[1]) <= 90) and (65 <= ord(patente[2]) <= 90) and (
-            48 <= ord(patente[3]) <= 57) and (48 <= ord(patente[4]) <= 57) and (48 <= ord(patente[5]) <= 57) and (
-            48 <= ord(patente[6]) <= 57):
-        print("La patente pertenece a uno de los 5 paises analizados")
-    else:
-        print("La patente no pertenece a uno de los 5 paises analizados")
-        quit()
+if len(patente) != 7:
+    pais_del_vehiculo = "Desconocido"
 else:
-    print("La patente ingresada no es valida")
-    quit()
+    if (65 <= ord(patente[0]) <= 90) and (65 <= ord(patente[1]) <= 90) and (48 <= ord(patente[2]) <= 57) and \
+            (48 <= ord(patente[3]) <= 57) and (48 <= ord(patente[4]) <= 57) and (65 <= ord(patente[5]) <= 90) and \
+            (65 <= ord(patente[6]) <= 90):
+        pais_del_vehiculo = 'Argentina'
 
-if (65 <= ord(patente[0]) <= 90) and (65 <= ord(patente[1]) <= 90) and (48 <= ord(patente[2]) <= 57) and (
-        48 <= ord(patente[3]) <= 57) and (48 <= ord(patente[4]) <= 57) and (65 <= ord(patente[5]) <= 90) and (
-        65 <= ord(patente[6]) <= 90):
-    pais_del_vehiculo = 'Argentina'
+    elif (65 <= ord(patente[0]) <= 90) and (65 <= ord(patente[1]) <= 90) and (48 <= ord(patente[2]) <= 57) and \
+            (48 <= ord(patente[3]) <= 57) and (48 <= ord(patente[4]) <= 57) and (48 <= ord(patente[5]) <= 57) and \
+            (48 <= ord(patente[6]) <= 57):
+        pais_del_vehiculo = 'Bolivia'
 
-if (65 <= ord(patente[0]) <= 90) and (65 <= ord(patente[1]) <= 90) and (48 <= ord(patente[2]) <= 57) and (
-        48 <= ord(patente[3]) <= 57) and (48 <= ord(patente[4]) <= 57) and (48 <= ord(patente[5]) <= 57) and (
-        48 <= ord(patente[6]) <= 57):
-    pais_del_vehiculo = 'Bolivia'
+    elif (65 <= ord(patente[0]) <= 90) and (65 <= ord(patente[1]) <= 90) and (65 <= ord(patente[2]) <= 90) and \
+            (48 <= ord(patente[3]) <= 57) and (48 <= ord(patente[5]) <= 57) and (48 <= ord(patente[6]) <= 57) and \
+            (65 <= ord(patente[4]) <= 90):
+        pais_del_vehiculo = 'Brasil'
 
-if (65 <= ord(patente[0]) <= 90) and (65 <= ord(patente[1]) <= 90) and (65 <= ord(patente[2]) <= 90) and (
-        48 <= ord(patente[3]) <= 57) and (48 <= ord(patente[5]) <= 57) and (48 <= ord(patente[6]) <= 57) and (
-        65 <= ord(patente[4]) <= 90):
-    pais_del_vehiculo = 'Brasil'
+    elif (65 <= ord(patente[0]) <= 90) and (65 <= ord(patente[1]) <= 90) and (65 <= ord(patente[2]) <= 90) and \
+            (65 <= ord(patente[3]) <= 90) and (48 <= ord(patente[4]) <= 57) and (48 <= ord(patente[5]) <= 57) and \
+            (48 <= ord(patente[6]) <= 57):
+        pais_del_vehiculo = 'Paraguay'
 
-if (65 <= ord(patente[0]) <= 90) and (65 <= ord(patente[1]) <= 90) and (65 <= ord(patente[2]) <= 90) and (
-        65 <= ord(patente[3]) <= 90) and (48 <= ord(patente[4]) <= 57) and (48 <= ord(patente[5]) <= 57) and (
-        48 <= ord(patente[6]) <= 57):
-    pais_del_vehiculo = 'Paraguay'
-
-if (65 <= ord(patente[0]) <= 90) and (65 <= ord(patente[1]) <= 90) and (65 <= ord(patente[2]) <= 90) and (
-        48 <= ord(patente[3]) <= 57) and (48 <= ord(patente[4]) <= 57) and (48 <= ord(patente[5]) <= 57) and (
-        48 <= ord(patente[6]) <= 57):
-    pais_del_vehiculo = 'Uruguay'
+    elif (65 <= ord(patente[0]) <= 90) and (65 <= ord(patente[1]) <= 90) and (65 <= ord(patente[2]) <= 90) and \
+            (48 <= ord(patente[3]) <= 57) and (48 <= ord(patente[4]) <= 57) and (48 <= ord(patente[5]) <= 57) and \
+            (48 <= ord(patente[6]) <= 57):
+        pais_del_vehiculo = 'Uruguay'
+    else:
+        pais_del_vehiculo = "Otro"
 
 print("La patente es de: ", pais_del_vehiculo)
 
 print("*" * 64)
 
 # SEGUNDA CONSIGNA
+
+vehiculo = int(input("Ingrese el tipo de vehiculo (motocicleta, automovil o camion) desde 0-2, respectivamente: "))
 
 if vehiculo == 0 or vehiculo == 1 or vehiculo == 2:
     if (pais_del_vehiculo == 'Argentina') or (pais_del_vehiculo == 'Paraguay') or (pais_del_vehiculo == 'Uruguay'):
@@ -113,6 +87,8 @@ else:
 print(64 * '*')
 
 # PARTE TRES
+metodo_pago = int(input("Ingrese el metodo de pago, manual(1) o telepeaje (2): "))
+pago_con_descuento = None
 
 if (metodo_pago == 1) or (metodo_pago == 2):
     if metodo_pago == 1:
@@ -127,6 +103,10 @@ else:
     quit()
 
 # PARTE 4
+pais = int(input("Ingrese el pais de la cabina atravesada, Argentina(0), Bolivia(1), Brasil(2), Paraguay(3), "
+                 "Uruguay(4): "))
+
+distancia = float(input("Ingrese la distancia recorrida desde la ultima cabina: "))
 
 if pais == 0 or pais == 3 or pais == 4:
     promedio = distancia/importe_urug_para_arg
