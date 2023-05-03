@@ -1,14 +1,24 @@
 print('Trabajo Práctico 01: Gestión de Cabinas de Peaje.')
+print()
 
-patente = input('ingrese le numero de patente:')
+pais = int(input("Ingrese el pais de la cabina atravesada, Argentina(0), Bolivia(1), Brasil(2), Paraguay(3), "
+                 "Uruguay(4): "))
+
+distancia = float(input("Ingrese la distancia recorrida desde la ultima cabina: "))
+
+patente = input('Ingrese le numero de patente: ')
 pais_del_vehiculo = None
 
 importe_urug_para_arg = 300
 importe_brasil = 400
 importe_bolivia = 200
-pago = None
+pago = float
 
 promedio = None
+
+print()
+print("*" * 150)
+print()
 
 if len(patente) != 7:
     pais_del_vehiculo = "Desconocido"
@@ -42,71 +52,78 @@ else:
 
 print("La patente es de: ", pais_del_vehiculo)
 
-print("*" * 64)
+print()
+print("*" * 150)
+print()
 
 # SEGUNDA CONSIGNA
 
-vehiculo = int(input("Ingrese el tipo de vehiculo (motocicleta, automovil o camion) desde 0-2, respectivamente: "))
+vehiculo = int(input("Ingrese el tipo de vehiculo, motocicleta(0), automovil(1), camion(2): "))
 
-if vehiculo == 0 or vehiculo == 1 or vehiculo == 2:
-    if (pais_del_vehiculo == 'Argentina') or (pais_del_vehiculo == 'Paraguay') or (pais_del_vehiculo == 'Uruguay'):
-        if vehiculo == 0:
-            descuento = (importe_urug_para_arg * 50) / 100
-            pago = 300 - descuento
-
-        if vehiculo == 2:
-            pago = importe_urug_para_arg * ((100 + 60) / 100)
-
-        if vehiculo == 1:
-            pago = importe_urug_para_arg
-
-    if pais_del_vehiculo == 'Brasil':
-        if vehiculo == 0:
-            descuento = (importe_brasil * 50) / 100
-            pago = 400 - descuento
-
-        if vehiculo == 2:
-            pago = importe_brasil * ((100 + 60) / 100)
-
-        if vehiculo == 1:
-            pago = importe_brasil
-
-    if pais_del_vehiculo == 'Bolivia':
-        if vehiculo == 0:
-            descuento = (importe_bolivia * 50) / 100
-            pago = 200 - descuento
-        if vehiculo == 2:
-            pago = importe_bolivia * ((100 + 60) / 100)
-        if vehiculo == 1:
-            pago = importe_bolivia
-
-else:
+if (vehiculo != 0) and (vehiculo != 1) and (vehiculo != 2):
     print('OPCION INCORRECTA')
     quit()
 
-print(64 * '*')
+else:
+    if (pais != 0) and (pais != 1) and (pais != 2) and (pais != 3) and (pais != 4):
+        print("El pais solo puede tomar valores entre 0-4")
+        quit()
+    else:
+        if vehiculo == 0 or vehiculo == 1 or vehiculo == 2:
+            if (pais == 0) or (pais == 3) or (pais == 4):
+                if vehiculo == 0:
+                    descuento = (importe_urug_para_arg * 50) / 100
+                    pago = 300 - descuento
+
+                if vehiculo == 2:
+                    pago = importe_urug_para_arg * ((100 + 60) / 100)
+
+                if vehiculo == 1:
+                    pago = importe_urug_para_arg
+
+        elif pais == 2:
+            if vehiculo == 0:
+                descuento = (importe_brasil * 50) / 100
+                pago = 400 - descuento
+
+            if vehiculo == 2:
+                pago = importe_brasil * ((100 + 60) / 100)
+
+            if vehiculo == 1:
+                pago = importe_brasil
+
+        elif pais == 1:
+            if vehiculo == 0:
+                descuento = (importe_bolivia * 50) / 100
+                pago = 200 - descuento
+            if vehiculo == 2:
+                pago = importe_bolivia * ((100 + 60) / 100)
+            if vehiculo == 1:
+                pago = importe_bolivia
+
+print()
+print(150 * '*')
+print()
 
 # PARTE TRES
 metodo_pago = int(input("Ingrese el metodo de pago, manual(1) o telepeaje (2): "))
-pago_con_descuento = None
+pago_con_descuento = float
 
 if (metodo_pago == 1) or (metodo_pago == 2):
     if metodo_pago == 1:
         pago_con_descuento = pago
-        print("El precio a pagar es: ", pago_con_descuento)
     if metodo_pago == 2:
-        pago_con_descuento = pago * 0.9
-
+        pago_con_descuento = (pago * 90) / 100
     print("El pago a realizar es: ", pago_con_descuento)
 else:
     print("El metodo de pago solo puede ser 1 o 2")
     quit()
 
-# PARTE 4
-pais = int(input("Ingrese el pais de la cabina atravesada, Argentina(0), Bolivia(1), Brasil(2), Paraguay(3), "
-                 "Uruguay(4): "))
+print()
+print(150 * '*')
+print()
 
-distancia = float(input("Ingrese la distancia recorrida desde la ultima cabina: "))
+# PARTE 4
 
 if pais == 0 or pais == 3 or pais == 4:
     promedio = distancia/importe_urug_para_arg
