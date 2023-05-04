@@ -130,10 +130,10 @@ else:
     if distancia == 0:
         quit()
     elif pais == 0 or pais == 3 or pais == 4:
-        promedio = distancia / importe_urug_para_arg
+        promedio = distancia / pago_con_descuento
     elif pais == 1:
-        promedio = distancia / importe_bolivia
+        promedio = distancia / pago_con_descuento
     elif pais == 2:
-        promedio = distancia / importe_brasil
+        promedio = distancia / pago_con_descuento
 
 print("El valor promedio pagado por cada kilometro desde la ultima cabina es: ", round(promedio, 2))
